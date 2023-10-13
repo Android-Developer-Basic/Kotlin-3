@@ -4,8 +4,8 @@ fun main() {
     val s1: String = calculate(10, 20)
     println(s1)
 
-    calculate(30, 40)
-    calculate(50, 60)
+    println(calculate(30, 40))
+    println(calculate(50, 60))
 }
 
 fun calculate(n1: Int, n2: Int): String {
