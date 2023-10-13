@@ -5,6 +5,7 @@ import java.time.LocalDate
 fun main() {
     println(calculate(10, 20))
     println(calculate(10, 20.5F))
+    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
 
     sign(
         lastName = "Иванов",
@@ -28,4 +29,10 @@ fun calculate(n1: Int, n2: Int): String {
 fun calculate(n1: Int, n2: Float): String {
     val s = n1 + n2
     return "$n1 + $n2 = $s"
+}
+
+fun calculate(vararg n: Float): String {
+    var sum = 0F
+    n.forEach { sum += it }
+    return "${n.joinToString(" + ")} = $sum"
 }
