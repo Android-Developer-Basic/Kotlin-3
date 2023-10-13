@@ -3,8 +3,8 @@ package ru.otus.homework
 import java.time.LocalDate
 
 fun main() {
-    val s1: String = calculate(10, 20)
-    println(s1)
+    println(calculate(10, 20))
+    println(calculate(10, 20, 30))
 
     sign(
         lastName = "Иванов",
@@ -23,4 +23,9 @@ internal fun LocalDate.russian(): String {
 fun calculate(n1: Int, n2: Int): String {
     val s = n1 + n2
     return "$n1 + $n2 = $s"
+}
+
+fun calculate(n1: Int, n2: Int, n3: Int): String {
+    val s = n1 + n2 + n3
+    return "$n1 + $n2 + $n3 = $s"
 }
