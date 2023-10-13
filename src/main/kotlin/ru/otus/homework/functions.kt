@@ -13,7 +13,11 @@ fun main() {
 }
 
 fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    print("Работу выполнил: $firstName $lastName, $date")
+    print("Работу выполнил: $firstName $lastName, ${date.russian()}")
+}
+
+internal fun LocalDate.russian(): String {
+    return "${this.dayOfMonth}.${monthValue}.${year}"
 }
 
 fun calculate(n1: Int, n2: Int): String {
