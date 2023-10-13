@@ -21,10 +21,7 @@ internal fun LocalDate.russian(): String {
     return "${this.dayOfMonth}.${monthValue}.${year}"
 }
 
-fun calculate(n1: Int, n2: Int): String {
-    val s = n1 + n2
-    return "$n1 + $n2 = $s"
-}
+fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 }"
 
 fun calculate(n1: Int, n2: Float): String {
     val s = n1 + n2
