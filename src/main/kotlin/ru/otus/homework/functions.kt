@@ -4,7 +4,7 @@ import java.time.LocalDate
 
 fun main() {
     println(calculate(10, 20))
-    println(calculate(10, 20, 30))
+    println(calculate(10, 20.5F))
 
     sign(
         lastName = "Иванов",
@@ -25,7 +25,7 @@ fun calculate(n1: Int, n2: Int): String {
     return "$n1 + $n2 = $s"
 }
 
-fun calculate(n1: Int, n2: Int, n3: Int): String {
-    val s = n1 + n2 + n3
-    return "$n1 + $n2 + $n3 = $s"
+fun calculate(n1: Int, n2: Float): String {
+    val s = n1 + n2
+    return "$n1 + $n2 = $s"
 }
