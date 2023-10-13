@@ -7,6 +7,9 @@ fun main() {
     println(calculate(10, 20.5F))
     println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
 
+    println(calculate(3, 2, ::add))
+    println(calculate(3, 2, ::subtract))
+
     sign(
         lastName = "Иванов",
         firstName = "Вася"
@@ -46,3 +49,11 @@ fun calculate(vararg n: Float): String {
     n.forEach { sum += it }
     return "${n.joinToString(" + ")} = $sum"
 }
+
+fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
+    val result = op(n1, n2)
+    return "Результат операции $n1 и $n2 равен: $result"
+}
+
+fun add(a: Int, b: Int): Int = a + b
+fun subtract(a: Int, b: Int): Int = a - b
