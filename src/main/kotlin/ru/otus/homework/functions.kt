@@ -15,10 +15,21 @@ fun main() {
         lastName = "Иванов",
         firstName = "Вася"
     )
+
+    translate(calculate(1.1F, 2.2F, 3.3F)) {
+        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
+    }
+    translate(calculate(1.1F, 2.2F, 3.3F)) {
+        "По-русски: ${it.replace("+", "плюс").replace("=", "равно")}"
+    }
+}
+
+fun translate(what: String, translator: (String) -> String) {
+    println(translator(what))
 }
 
 fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    print("Работу выполнил: $firstName $lastName, ${date.russian()}")
+    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
 }
 
 internal fun LocalDate.russian(): String {
