@@ -19,9 +19,11 @@ fun main() {
     translate(calculate(1.1F, 2.2F, 3.3F)) {
         "In english: ${it.replace("+", "plus").replace("=", "equals")}"
     }
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "По-русски: ${it.replace("+", "плюс").replace("=", "равно")}"
-    }
+    println(
+        calculate(1.1F, 2.2F, 3.3F) {
+            "%.4f (с точностью до четырех знаков)".format(this)
+        }
+    )
 }
 
 fun translate(what: String, translator: (String) -> String) {
@@ -56,10 +58,12 @@ fun calculate(n1: Int, n2: Float): String {
     return "${ add() } ${ what() }"
 }
 
-fun calculate(vararg n: Float): String {
+fun Float.formatWithDot(): String = "%.2f".format(this)
+
+fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
     var sum = 0F
     n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = $sum"
+    return "${n.joinToString(" + ")} = ${sum.format()}"
 }
 
 fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
