@@ -24,7 +24,12 @@ fun main() {
             "%.4f (с точностью до четырех знаков)".format(this)
         }
     )
+
+    val product = 2 by 2
+    println("Произведение: $product")
 }
+
+infix fun Int.by(other: Int): Int = this * other
 
 fun translate(what: String, translator: (String) -> String) {
     println(translator(what))
