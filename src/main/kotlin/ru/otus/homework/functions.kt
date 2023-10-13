@@ -4,8 +4,14 @@ fun main() {
     val s1: String = calculate(10, 20)
     println(s1)
 
-    println(calculate(30, 40))
-    println(calculate(50, 60))
+    sign(
+        lastName = "Иванов",
+        firstName = "Вася"
+    )
+}
+
+fun sign(firstName: String, lastName: String) {
+    print("Работу выполнил: $firstName $lastName")
 }
 
 fun calculate(n1: Int, n2: Int): String {
