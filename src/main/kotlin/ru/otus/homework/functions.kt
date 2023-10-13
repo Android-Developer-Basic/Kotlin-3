@@ -27,7 +27,15 @@ fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
 
 fun calculate(n1: Int, n2: Float): String {
     fun add(): String {
-        val s = n1 + n2
+        val s: Float
+
+        while (true) {
+            // Пример блока. Вычисляем, и сразу выходим
+            val s1 = n1 + n2
+            s = s1
+            break
+        }
+
         return "$n1 + $n2 = $s"
     }
     return "${ add() } ${ what() }"
