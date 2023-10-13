@@ -9,6 +9,7 @@ fun main() {
 
     println(calculate(3, 2, ::add))
     println(calculate(3, 2, ::subtract))
+    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
 
     sign(
         lastName = "Иванов",
