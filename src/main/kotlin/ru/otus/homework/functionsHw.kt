@@ -8,3 +8,9 @@ fun calculateHw(
 
     return sum
 }
+
+fun stringBuilder(
+    vararg strings: String, separator: Char = ' '
+) : String {
+    return strings.joinToString(separator.toString())
+}

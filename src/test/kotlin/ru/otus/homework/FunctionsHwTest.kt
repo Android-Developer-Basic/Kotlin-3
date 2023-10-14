@@ -19,4 +19,26 @@ class FunctionsHwTest {
             calculateHw(25, 25, 25, 25)
         )
     }
+
+    @Test
+    fun stringBuilderDefaultSeparatorTest(){
+        val expected = "str1 str2 str3"
+        val actual = stringBuilder("str1", "str2", "str3")
+
+        Assertions.assertEquals(
+            expected,
+            actual
+        )
+    }
+
+    @Test
+    fun stringBuilderComaSeparatorTest(){
+        val expected = "str1,str2,str3"
+        val actual = stringBuilder("str1", "str2", "str3", separator = ',')
+
+        Assertions.assertEquals(
+            expected,
+            actual
+        )
+    }
 }
