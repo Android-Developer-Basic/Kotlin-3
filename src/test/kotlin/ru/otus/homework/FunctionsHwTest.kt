@@ -41,4 +41,10 @@ class FunctionsHwTest {
             actual
         )
     }
+
+    @Test
+    fun testMeasureExecutionTime(){
+        val executionTime = measureExecutionTime(::testLoop)
+        Assertions.assertTrue(executionTime > 0)
+    }
 }
