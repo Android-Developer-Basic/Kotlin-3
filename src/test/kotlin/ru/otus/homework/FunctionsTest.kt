@@ -11,4 +11,19 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+
+    @Test
+    fun calculationTest1() {
+        Assertions.assertEquals(
+            "str1 str2 str3",
+            second("str1", "str2","str3")
+        )
+    }
+
+    fun calculationTest2() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            second("str1", "str2","str3",c=',')
+        )
+    }
 }
