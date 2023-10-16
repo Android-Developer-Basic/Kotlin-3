@@ -78,3 +78,27 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun function1(param1: Int, param2: Int, vararg someInts: Int): Int {
+    var sumOfParams = param1 + param2
+    someInts.forEach { sumOfParams += it }
+    return sumOfParams
+}
+
+fun function2(vararg someString: String, char: Char = ' '): String {
+    return someString.joinToString(char.toString())
+}
+
+fun function3(word: String, times: Int, printMessage: (String, Int) -> String): Long {
+    val timeStart = System.currentTimeMillis()
+    printMessage(word, times)
+    val timeFinish = System.currentTimeMillis()
+    val time = timeFinish - timeStart
+    println("Time is $time")
+    return time
+}
+
+fun subFunc(word: String, times: Int): String {
+    for (i in 1..times) println(word)
+    return "I  printed $word $times times"
+}
