@@ -27,6 +27,12 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    println("Cумма чисел равна: ${first(1,2)}")
+
+    println(second("aa","bb","cc"))
+
+    println("Время выполнения программы равно: ${third(1,100,::fourth)} мсек")
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +84,49 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun first(a:Int,b:Int,vararg n:Int):Int{
+    var sum = a+b
+    n.forEach { sum+=it }
+    return sum
+
+}
+
+fun second(vararg n:String,c:Char=' '):String{
+    var string=""
+    if(c!=null){
+        n.forEach { string+=it+c }
+    }
+    else{
+        n.forEach { string+=it+c }
+    }
+    return string.substring(0,string.length-1)
+}
+
+fun third(n1:Int,n2:Int,op: (Int, Int) -> Int):Long{
+    val begin = System.currentTimeMillis()
+    op(n1,n2)
+    val end = System.currentTimeMillis()
+    return end-begin
+}
+
+fun fourth(n1:Int,n2:Int):Int{
+    var sum = 0
+    if (n1<=n2){
+        for (i in n1..n2){
+            for (j in n1..n2){
+                sum += i*j
+                println(sum)
+            }
+        }
+    }
+    else {
+        for (i in n2..n1){
+            for (j in n2..n1) {
+                sum += i * j
+                println(sum)
+            }
+        }
+    }
+    return sum
+}
