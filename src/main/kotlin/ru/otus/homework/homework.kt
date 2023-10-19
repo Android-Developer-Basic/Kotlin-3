@@ -4,16 +4,19 @@ import kotlin.system.measureTimeMillis
 
 fun main() {
     val a = sum(1, 2, 3, 4, 5, 6, 7, 8, 9)
-    val b = alternativeSum(1, 2, 3, 4, 5, 6, 7, 8, 9)
-
     println(a)
-    println(b)
 
 
-    val result = concatenation(strings = arrayOf("a", "b", "c", "d"), char = '!')
+
+
+    val result = concatenation(strings = arrayOf("a", "b", "c", "d"))
     val result1 = concatenation(strings = arrayOf("a", "b", "c", "d"))
+    val result2 = concatenation( "abo","ba")
     println(result)
     println(result1)
+    println(result2)
+
+
 
     val testFunction = {
         for (i in 1..10) {
@@ -21,8 +24,9 @@ fun main() {
             Thread.sleep(100)
         }
     }
-    val executionTime = checkTime { testFunction() }
+    val executionTime = checkTime { testFunction()}
     println("Execution time: $executionTime ms")
+
 
 }
 
@@ -32,18 +36,8 @@ fun sum(arg: Int, arg1: Int, vararg ints: Int): Int {
     else arg + arg1
 }
 
-fun alternativeSum(arg: Int, arg1: Int, vararg ints: Int): Int {
-    var result: Int = arg + arg1
-    if (ints.isNotEmpty()) {
-        for (int in ints) {
-            result += int
-        }
-    }
-    return result
-}
 
-
-fun concatenation(vararg strings: String, char: Char = ' '): String {
+fun concatenation(vararg strings: String, char: Char = ' ', ): String {
     return strings.joinToString(separator = char.toString())
 
 }

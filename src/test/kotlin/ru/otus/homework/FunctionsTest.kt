@@ -11,4 +11,16 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+    @Test
+    fun concatenationTest(){
+        Assertions.assertEquals(
+            "abo-ba",
+            concatenation("abo","ba", char = '-')
+        )
+        Assertions.assertEquals(
+            "abo ba",
+            concatenation("abo","ba")
+        )
+    }
+
 }
