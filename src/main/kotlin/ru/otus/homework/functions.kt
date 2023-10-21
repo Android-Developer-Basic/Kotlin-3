@@ -27,6 +27,17 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    // 1. Функция с обязательными и необязательными позиционными параметрами
+    println( summary(1, 2, 7, 0, 4))
+
+    // 2. Функция с необязательным параметром и позиционными параметрами
+    println( joinString("My", "good", "programm", ch = '+'))
+    // 3. В тестах
+
+    // 4. Функция, измеряющая время выполнения другой функции
+    println("Время работы медленной функции (наносекунд): ${funTimer { slowFunction() } }" )
+
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +89,26 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+// Задание №1
+fun summary(n1: Int, n2: Int, vararg m: Int): Int {
+    return n1 + n2 + m.sum()
+}
+
+// Задание №2 и №3 (в тестах)
+fun joinString(vararg s: String, ch: Char = ' '): String {
+    return s.joinToString(""+ch)
+}
+
+// Задание №4
+fun funTimer(f: ()->Unit ): Long {
+    val startTime = System.nanoTime()
+    f()
+    val endTime = System.nanoTime()
+    return endTime-startTime
+}
+fun slowFunction()  {
+    for (n in 0..1_000_000) {
+        n*n*n
+    }
+}
