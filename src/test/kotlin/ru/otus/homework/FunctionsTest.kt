@@ -11,4 +11,21 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+
+    //task 3
+    @Test
+    fun ifSeparatorIsEmptyTest() {
+        Assertions.assertEquals(
+            "str1 str2 str3",
+            stringsConcatenation("str1", "str2", "str3")
+        )
+    }
+
+    @Test
+    fun ifSeparatorIsFillTest() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            stringsConcatenation("str1", "str2", "str3", separator = ',')
+        )
+    }
 }
