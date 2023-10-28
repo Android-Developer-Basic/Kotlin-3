@@ -6,7 +6,7 @@ fun measTime(action: () -> Unit): Long {
     val endTime = System.currentTimeMillis()
     return endTime - startTime}
 
-//1 домашнее заданее
+//код из 1 д/з
 fun main() {
     val actionTime = measTime {
         println("Массив автоматически заполнится случайными числами в диапазоне от -15 до 15")
