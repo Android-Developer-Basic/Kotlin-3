@@ -11,4 +11,18 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+
+    @Test
+    fun delimiterStrings() {
+        Assertions.assertEquals(
+            "str1 str2 str3",
+            delimiterStrings("str1", "str2","str3")
+        )
+
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            delimiterStrings("str1","str2","str3", delimiter = ',')
+
+        )
+    }
 }
