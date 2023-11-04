@@ -2,47 +2,20 @@ package ru.otus.homework
 
 import java.time.LocalDate
 
-fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
-
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
+ fun main(){
+    val ssum = intArrayOf(2, 3, 2)
+    printArg(5, 10, 2, 3)
+    printArg(5, 10, 2, 5, 10, 50)
+    printArg(5, 10, *ssum) //с использованием оператора *
 }
 
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    print("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
 
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
-    }
-    return "${ add() } ${ what() }"
-}
-
-fun calculate(vararg n: Float): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = $sum"
+fun printArg(num1: Int, num2: Int, vararg num3: Int) {
+    var result = 0
+    for (nums in num3)
+        result += nums
+    //println("Summ element $result")
+    val a = result
+    val sum = num1 + num2 + a
+    println("Sum element $sum")
 }
