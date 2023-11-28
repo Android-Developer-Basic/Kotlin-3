@@ -15,9 +15,15 @@ fun GetSumm(num1:Int, num2:Int, vararg nums: Int) : Int {
 }
 
 fun getString(vararg strings: String, ch:Char = ' '): String {
-    var result:String = ""
-    for (str in strings) {
-        result = result + str + ch
+    var result = ""
+    for (str in strings.indices) {
+        if(str != strings.size - 1)
+        {
+            result = result + strings[str] + ch
+        }
+        else {
+            result += strings[str]
+        }
     }
     return result
 }
