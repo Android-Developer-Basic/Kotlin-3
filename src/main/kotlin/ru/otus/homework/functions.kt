@@ -3,7 +3,7 @@ package ru.otus.homework
 import java.time.LocalDate
 
 fun main() {
-    println(calculate(100, 200))
+    println(calculate(100500, 20))
     println(calculate(10, 20.5F))
     println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
 
