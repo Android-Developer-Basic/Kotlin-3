@@ -90,13 +90,7 @@ fun homeWork1(a: Int, b: Int, vararg numbers: Int): Int {
 
 fun homeWork2(vararg strings: String, ch: Char? = null): String {
     var result: String = ""
-    for (str in strings) {
-        result += "$str "
-    }
-    if (!result.isEmpty()) {
-        result = result.dropLast(1)
-    }
-
+    result = strings.joinToString(separator = " ")
 
     if (ch != null) {
         result = result.replace(" ", ",")
