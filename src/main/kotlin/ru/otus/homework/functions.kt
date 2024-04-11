@@ -27,6 +27,7 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +79,48 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun homeWork1(a: Int, b: Int, vararg numbers: Int): Int {
+    var result: Int = a + b
+    for (number in numbers) {
+        result += number
+    }
+    return result
+}
+
+fun homeWork2(vararg strings: String, ch: Char? = null): String {
+    var result: String = ""
+    for (str in strings) {
+        result += "$str "
+    }
+    if (!result.isEmpty()) {
+        result = result.dropLast(1)
+    }
+
+
+    if (ch != null) {
+        result = result.replace(" ", ",")
+    }
+    return result
+}
+
+fun startTimeTest() : Long {
+   return measureTime { longRunningFunction() }
+}
+fun longRunningFunction() {
+    var x: Int = 0
+    for (j in 0 until 3) {
+        x = 0
+        for (i in 0 until 4000000) {
+            x++
+        }
+    }
+}
+
+fun measureTime(op: () -> Unit): Long {
+    val startTime = System.currentTimeMillis()
+    op()
+    val endTime = System.currentTimeMillis()
+    println("Time= $endTime - $startTime")
+    return endTime - startTime
+}
