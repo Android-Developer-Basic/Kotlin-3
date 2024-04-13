@@ -36,12 +36,12 @@ class FunctionsTest {
         )
     }
 
-//    Для теста времени
-//    @Test
-//    fun timeTest() {
-//        Assertions.assertEquals(
-//            10,
-//            startTimeTest()
-//        )
-//    }
+  //  Для теста времени
+    @Test
+    fun timeTest() {
+        Assertions.assertEquals(
+            10,
+            startTimeTest()
+        )
+    }
 }

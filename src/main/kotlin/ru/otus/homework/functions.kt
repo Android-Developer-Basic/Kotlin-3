@@ -81,10 +81,7 @@ fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
 
 fun homeWork1(a: Int, b: Int, vararg numbers: Int): Int {
-    var result: Int = a + b
-    for (number in numbers) {
-        result += number
-    }
+    val result: Int = a + b + numbers.sum()
     return result
 }
 
@@ -112,9 +109,9 @@ fun longRunningFunction() {
 }
 
 fun measureTime(op: () -> Unit): Long {
-    val startTime = System.currentTimeMillis()
-    op()
-    val endTime = System.currentTimeMillis()
-    println("Time= $endTime - $startTime")
-    return endTime - startTime
+    val time = measureTime {
+        op.invoke()
+    }
+    println("Time= $time")
+    return time
 }
