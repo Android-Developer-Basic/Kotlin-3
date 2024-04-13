@@ -11,4 +11,20 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+
+    @Test
+    fun homeworkJoinStringsTest1() {
+        Assertions.assertEquals(
+            "str1 str2 str3",
+            homeworkJoinStrings("str1", "str2", "str3")
+        )
+    }
+
+    @Test
+    fun homeworkJoinStringsTest2() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            homeworkJoinStrings("str1", "str2", "str3", dlm = ',')
+        )
+    }
 }
