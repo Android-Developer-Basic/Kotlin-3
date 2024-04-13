@@ -1,8 +1,23 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import kotlin.time.Duration.Companion.nanoseconds
+import kotlin.time.TimeSource
 
 fun main() {
+    // homework
+    println(homeworkSumAll(1, 2, 3, 4))
+    println(homeworkSumAll(1, 2))
+    //println(homeworkSumAll(1))
+    println(homeworkJoinStrings("123", "45", dlm = ','))
+    println(homeworkJoinStrings("123", "45"))
+    println(homeworkJoinStrings())
+    println(homeworkJoinStrings(dlm = ','))
+    println(homeworkGetExecTimeNs { Thread.sleep(1000) })
+    println(homeworkGetExecTimeNs { for (i in 0..Int.MAX_VALUE); }.run {
+        nanoseconds.toComponents { m, s, ns -> "время выполнения $m мин $s.${ns.nanoseconds.inWholeMilliseconds} сек" }
+    })
+
     println(calculate(10, 20))
     println(calculate(10, 20.5F))
     println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
@@ -29,6 +44,22 @@ fun main() {
     println("Произведение: $product")
 }
 
+fun homeworkSumAll(a1: Int, a2: Int, vararg args: Int) = a1 + a2 + args.sum()
+
+fun homeworkJoinStrings(vararg args: String, dlm: Char = ' '): String {
+    var res = ""
+    for ((i, s) in args.withIndex())
+        res = res + s + if (i < args.size - 1) dlm else ""
+    return res
+}
+
+fun homeworkGetExecTimeNs(func: () -> Unit): Long {
+    val timeSource = TimeSource.Monotonic
+    val t1 = timeSource.markNow()
+    func()
+    return (timeSource.markNow() - t1).inWholeNanoseconds
+}
+
 infix fun Int.by(other: Int): Int = this * other
 
 fun translate(what: String, translator: (String) -> String) {
@@ -45,7 +76,7 @@ internal fun LocalDate.russian(): String {
 
 fun what(): String = "Огурцов"
 
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
+fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${n1 + n2} ${what()}"
 
 fun calculate(n1: Int, n2: Float): String {
     fun add(): String {
@@ -60,7 +91,7 @@ fun calculate(n1: Int, n2: Float): String {
 
         return "$n1 + $n2 = $s"
     }
-    return "${ add() } ${ what() }"
+    return "${add()} ${what()}"
 }
 
 fun Float.formatWithDot(): String = "%.2f".format(this)
