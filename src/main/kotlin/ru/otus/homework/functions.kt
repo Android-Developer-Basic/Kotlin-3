@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import java.util.concurrent.TimeUnit
 
 fun main() {
     println(calculate(10, 20))
@@ -78,3 +79,28 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+// ##1
+
+fun myFunction(a: Int, b: Int, vararg c: Int): Int{
+    /*if (a == null || b == null){
+        throw IllegalArgumentException("Оба обязательных параметра должны быть переданы")
+    }
+    Закомментил данное условие т.к. Git ругается при коммите, ведь это условие и так выполняется при запуске функции
+     */
+    var sum = 0
+    sum = a + b + c.sum() // Использую метод sum() для подсчета суммы массива
+    return sum
+}
+// ##2
+fun myFunctionString(vararg str: String, chr: Char? = ' '): String {
+    return str.joinToString(chr.toString())
+}
+
+// ##4
+
+fun ExecutionTime(function: () -> Unit): Long {
+    val startTime = System.nanoTime()
+    function()
+    return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)
+}
