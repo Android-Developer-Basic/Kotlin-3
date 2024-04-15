@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import java.util.concurrent.TimeUnit
 
 fun main() {
     println(calculate(10, 20))
@@ -94,4 +95,12 @@ fun myFunction(a: Int, b: Int, vararg c: Int): Int{
 // ##2
 fun myFunctionString(vararg str: String, chr: Char? = ' '): String {
     return str.joinToString(chr.toString())
+}
+
+// ##4
+
+fun ExecutionTime(function: () -> Unit): Long {
+    val startTime = System.nanoTime()
+    function()
+    return TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startTime)
 }
