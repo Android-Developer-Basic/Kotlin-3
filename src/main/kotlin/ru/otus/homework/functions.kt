@@ -1,6 +1,5 @@
 package ru.otus.homework
 
-import java.lang.IllegalArgumentException
 import java.time.LocalDate
 
 fun main() {
@@ -91,4 +90,8 @@ fun myFunction(a: Int, b: Int, vararg c: Int): Int{
     var sum = 0
     sum = a + b + c.sum() // Использую метод sum() для подсчета суммы массива
     return sum
+}
+// ##2
+fun myFunctionString(vararg str: String, chr: Char? = ' '): String {
+    return str.joinToString(chr.toString())
 }
