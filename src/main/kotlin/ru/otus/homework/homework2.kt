@@ -20,7 +20,7 @@ fun main() {
 }
 
 fun calculatehw(n1: Int, n2: Int, vararg n: Int): String {
-    var sum = n1 + n2 + n.sum()
+    val sum = n1 + n2 + n.sum()
 
     return "$sum"
 }
@@ -37,9 +37,9 @@ fun calculatehw(n1: Int, n2: Int, vararg n: Int): String {
 //- если передан `Char` параметр, то объединение делается этим символом
 
 fun join_stringhw(vararg str: String, char: Char = ' '): String {
-    var res = str.joinToString(separator = "$char")
+    val res = str.joinToString(separator = "$char")
 
-    return "$res"
+    return res
 }
 
 //## 4. Функция, измеряющая время выполнения другой функции
@@ -59,6 +59,6 @@ fun time_fun(op: (Int) -> Unit): String {
 
 fun sleep(n: Int) {
     for (i in 1..n)
-        for (i in 1..n)
+        for (x in 1..n)
             continue
 }
