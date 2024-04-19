@@ -1,8 +1,22 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import kotlin.system.measureNanoTime
 
 fun main() {
+
+    /*  Вызов функции с обязательными и необязательными позиционными параметрами  */
+    val ints = Array(6) { i -> (i + 1) }
+    val sum = sumOfInts(ints[0], ints[1], ints[2], ints[3], ints[4], ints[5])
+    println("сумма чисел от ${ints[0]} до ${ints.last()} равна $sum")
+
+    /*  Вызов функции с необязательным параметром и позиционными параметрами  */
+    println(makeString("строка1", "строка2", "строка3", "строка4", "строка5", divider = ';'))
+
+    /*  Вызов функции, измеряющей время выполнения другой функции в наносекундах */
+    val timeNano = measureFunExeTimeNanos(::printALotOfText)
+    println("Функция выполнена за $timeNano наносекунд (${timeNano/10e5} миллисекунд)")
+
     println(calculate(10, 20))
     println(calculate(10, 20.5F))
     println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
@@ -27,6 +41,40 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+}
+
+fun printALotOfText()
+{
+    for (i in 0 until 100000){
+        println("Нужно больше текста!")
+    }
+}
+
+fun measureFunExeTimeNanos(op: () -> Unit): Long
+{
+    val timeNano = measureNanoTime {
+        op()
+    }
+    return timeNano
+}
+
+fun sumOfInts(int1: Int, int2: Int, vararg intN: Int): Int
+{
+    var sum = int1 + int2
+    for (i in intN) { sum += i }
+    return sum
+}
+
+fun makeString(vararg strings: String, divider: Char = ' '): String
+{
+    var result = ""
+    for (str in strings) {
+        result += str
+        if (!str.equals(strings.last())){
+            result += divider
+        }
+    }
+    return result
 }
 
 infix fun Int.by(other: Int): Int = this * other
