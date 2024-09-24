@@ -89,9 +89,7 @@ fun function1(
 fun function2(
     vararg strings: String,
     separator: Char = ' ',
-): String {
-    return strings.joinToString(separator.toString())
-}
+) = strings.joinToString(separator.toString())
 
 fun function3(function: () -> Any) = measureTimeMillis {
     function()
