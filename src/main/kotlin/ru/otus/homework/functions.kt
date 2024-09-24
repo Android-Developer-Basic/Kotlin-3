@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import kotlin.system.measureTimeMillis
 
 fun main() {
     println(calculate(10, 20))
@@ -78,3 +79,20 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun function1(
+    x1: Int,
+    x2: Int,
+    vararg x3: Int,
+): Int = x1 + x2 + x3.sum()
+
+fun function2(
+    vararg strings: String,
+    separator: Char = ' ',
+): String {
+    return strings.joinToString(separator.toString())
+}
+
+fun function3(function: () -> Any) = measureTimeMillis {
+    function()
+}
