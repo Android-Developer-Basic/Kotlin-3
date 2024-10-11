@@ -42,6 +42,32 @@ class FunctionsTest {
             , "Строки должны быть соединены пользовательским разделителем")
     }
 
+    private fun testConcatenationPerformance(iterations: Int) {
+        val stringConcatTime = measureExecutionTime {
+            var result = ""
+            for (i in 1..iterations) {
+                result += "Test"
+            }
+        }
+        println("Время, затраченное на объединение строк для $iterations " +
+                "итераций $stringConcatTime мс.")
+        val stringBufferConcatTime = measureExecutionTime {
+            val stringBuffer = StringBuffer()
+            for (i in 1..iterations) {
+                stringBuffer.append("Test")
+            }
+        }
+        println("Время, затраченное StringBuffer на объединение строк для $iterations " +
+                "итераций: $stringBufferConcatTime мс.")
+    }
 
+    @Test
+    fun testConcatenationPerformanceWithDifferentSizes() {
+        val testSizes = listOf(10, 100, 300, 500, 800, 1_000
+            , 10_000, 30_000, 50_000, 80_000, 100_000, 200_000)
+        for (size in testSizes) {
+            testConcatenationPerformance(size)
+        }
+    }
 
 }

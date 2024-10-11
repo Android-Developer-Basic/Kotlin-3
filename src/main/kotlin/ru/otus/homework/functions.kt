@@ -90,3 +90,10 @@ fun sumOfNumbers(first: Int, second: Int, vararg additional: Int): Int {
 fun joinStrings(vararg strings: String, separator: Char = ' '): String {
     return strings.joinToString(separator.toString())
 }
+
+fun measureExecutionTime(block: () -> Unit): Long {
+    val startTime = System.currentTimeMillis()
+    block()
+    val endTime = System.currentTimeMillis()
+    return endTime - startTime
+}
