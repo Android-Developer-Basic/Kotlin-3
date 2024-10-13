@@ -1,80 +1,52 @@
 package ru.otus.homework
 
-import java.time.LocalDate
+import java.util.Calendar
 
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
 
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
+    println("Время работы функции ${measureTime(::testFunc)} миллисекунд")
+}
 
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
-
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
+/**
+ * 1. Функция с обязательными и необязательными позиционными параметрами
+ * */
+fun calc(n: Int, m: Int, vararg l: Int): Int {
+    if (l.isEmpty()) {
+        throw Exception()
     }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
-
-    val product = 2 by 2
-    println("Произведение: $product")
-}
-
-infix fun Int.by(other: Int): Int = this * other
-
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
-}
-
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
-
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
+    var result = n + m
+    for (k in l) {
+        result += k
     }
-    return "${ add() } ${ what() }"
+    return result
 }
 
-fun Float.formatWithDot(): String = "%.2f".format(this)
-
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
+/**
+ * 2. Функция с необязательным параметром и позиционными параметрами
+ * */
+fun concat(vararg v: String, c: Char = ' '): String {
+    var result = ""
+    for (i in v.indices) {
+        result += v[i]
+        if (i + 1 < v.size) {
+            result += c
+        }
+    }
+    return result
 }
 
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
+/**
+ * 4. Функция, измеряющая время выполнения другой функции
+ */
+fun measureTime(f: () -> Unit): Long {
+    val start = Calendar.getInstance().timeInMillis
+    f.invoke()
+    val end = Calendar.getInstance().timeInMillis
+    return end - start
 }
 
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
+fun testFunc() {
+    for (i in 0..1_000_000_000) {
+        if (i % 100_000_00 == 0) println("Движемся. Сейчас $i")
+    }
+}
