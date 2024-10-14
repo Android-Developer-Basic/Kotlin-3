@@ -5,10 +5,24 @@ import org.junit.jupiter.api.Test
 
 class FunctionsTest {
     @Test
-    fun calculationTest() {
+    fun stringConcatenationTest() {
+
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            "first second third",
+            stringConcatenation("first", "second", "third")
+        )
+
+        Assertions.assertEquals(
+            "first,second,third",
+            stringConcatenation("first", "second", "third", concatenation = ',')
+        )
+    }
+
+    @Test
+    fun sumOfNumbersTest() {
+        Assertions.assertEquals(
+            60,
+            sumOfNumbers(10,20,30)
         )
     }
 }
