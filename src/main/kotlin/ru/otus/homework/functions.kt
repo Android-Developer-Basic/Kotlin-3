@@ -24,8 +24,8 @@ fun calculate(firstValue: Int, secondValue: Int, vararg additionalValues: Int): 
 
 fun combiningStrings(vararg strings: String, char: Char = ' '): String {
 
-    val stringResult = strings.joinToString(separator = char.toString())
-    return stringResult
+    val combinedText = strings.joinToString(separator = char.toString())
+    return combinedText
 }
 
 fun performanceTest(block: ()->Unit) {
