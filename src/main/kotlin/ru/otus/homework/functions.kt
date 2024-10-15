@@ -10,14 +10,14 @@ fun main() {
     println(combinedText)
 
     performanceTest { testFun() }
-
 }
 
-fun calculate(firstArg: Int, secondArgs: Int, vararg additionalArgs: Int): Int {
+fun calculate(firstValue: Int, secondValue: Int, vararg additionalValues: Int): Int {
 
-    var result = firstArg + secondArgs
-    for (arg in additionalArgs) {
-        result += arg
+    var result = firstValue + secondValue
+
+    for (additionalValue in additionalValues) {
+        result += additionalValue
     }
     return result
 }
@@ -32,7 +32,7 @@ fun performanceTest(block: ()->Unit) {
 
     val measureTime = measureNanoTime(block)
     val millisecondTime = measureTime / 1000000F
-    println("task take $millisecondTime ms")
+    println("task took $millisecondTime ms")
 }
 
 fun testFun() {
