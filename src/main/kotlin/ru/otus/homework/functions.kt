@@ -9,7 +9,7 @@ fun main() {
     val combinedText = combiningStrings("this", "is", "a", "test", char = '-')
     println(combinedText)
 
-    performanceTest { testFun() }
+    performanceTest {calculate(1, 1, 3, 4) }
 
 }
 
@@ -31,7 +31,7 @@ fun combiningStrings(vararg strings: String, char: Char = ' '): String {
 fun performanceTest(block: ()->Unit) {
 
     val measureTime = measureNanoTime(block)
-    val millisecondTime = measureTime / 1000000
+    val millisecondTime = measureTime / 1000000F
     println("task take $millisecondTime ms")
 }
 
