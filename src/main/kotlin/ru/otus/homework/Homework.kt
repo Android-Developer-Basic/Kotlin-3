@@ -42,12 +42,3 @@ fun getTimeOfFunction(function: () -> Unit): Int {
     val duration = ChronoUnit.MILLIS.between(start, end).toInt()/1000
     return duration
 }
-
-fun main() {
-    println(joinStrings("str1", "str2", "str3"))
-    println(joinStrings("str1", "str2", "str3", separator = ','))
-
-
-}
-
-
