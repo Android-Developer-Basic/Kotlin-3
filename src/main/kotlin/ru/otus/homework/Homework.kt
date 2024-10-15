@@ -1,7 +1,6 @@
 package ru.otus.homework
 
-import java.time.LocalTime
-import java.time.temporal.ChronoUnit
+import kotlin.system.measureTimeMillis
 
 /*1. Функция с обязательными и необязательными позиционными параметрами
 Напишите функцию, которая будет принимать:
@@ -35,10 +34,4 @@ fun joinStrings(vararg strings: String, separator: Char = ' ') = strings.joinToS
 Иначе, вы можете не заметить, сколько времени прошло
 */
 
-fun getTimeOfFunction(function: () -> Unit): Int {
-    val start = LocalTime.now()
-    function()
-    val end = LocalTime.now()
-    val duration = ChronoUnit.MILLIS.between(start, end).toInt()/1000
-    return duration
-}
+fun getTimeOfFunction(function: () -> Unit) = measureTimeMillis(function).toInt() / 1000
