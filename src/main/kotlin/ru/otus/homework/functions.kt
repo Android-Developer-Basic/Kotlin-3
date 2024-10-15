@@ -4,6 +4,9 @@ fun main() {
 
     println(calculate(1, 1, 3, 4))
 
+    val combinedText = combiningStrings("this", "is", "a", "test", char = '-')
+    println(combinedText)
+
 }
 
 fun calculate(firstArg: Int, secondArgs: Int, vararg additionalArgs: Int): Int {
@@ -13,4 +16,10 @@ fun calculate(firstArg: Int, secondArgs: Int, vararg additionalArgs: Int): Int {
         result += arg
     }
     return result
+}
+
+fun combiningStrings(vararg strings: String, char: Char = ' '): String {
+
+    val stringResult = strings.joinToString(separator = char.toString())
+    return stringResult
 }
