@@ -6,10 +6,10 @@ fun main() {
 
     println(calculate(1, 1, 3, 4))
 
-    val combinedText = combiningStrings("this", "is", "a", "test", char = '-')
+    val combinedText = combiningStrings("this", "is", "a", "test", char = ',')
     println(combinedText)
 
-    performanceTest { combiningStrings("this", "is", "a", "test", char = '-') }
+    performanceTest { combiningStrings("this", "is", "a", "test", char = ',') }
 }
 
 fun calculate(firstValue: Int, secondValue: Int, vararg additionalValues: Int): Int {
