@@ -9,7 +9,7 @@ fun main() {
     val combinedText = combiningStrings("this", "is", "a", "test", char = '-')
     println(combinedText)
 
-    performanceTest {calculate(1, 1, 3, 4) }
+    performanceTest { testFun() }
 
 }
 
