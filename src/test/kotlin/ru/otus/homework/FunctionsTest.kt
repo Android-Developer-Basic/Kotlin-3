@@ -5,10 +5,18 @@ import org.junit.jupiter.api.Test
 
 class FunctionsTest {
     @Test
-    fun calculationTest() {
+    fun joinTest() {
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            "str1 str2 str3",
+            join("str1", "str2", "str3")
+        )
+    }
+
+    @Test
+    fun joinWithSeparatorTest() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            join("str1", "str2", "str3", separator = ',')
         )
     }
 }
