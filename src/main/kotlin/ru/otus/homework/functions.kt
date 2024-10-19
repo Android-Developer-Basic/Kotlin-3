@@ -1,80 +1,68 @@
 package ru.otus.homework
 
-import java.time.LocalDate
-
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
+    println("task1 = ${task1(1, 10, 100, 200, 300).toString()}")
+    println("task2 = \"${task2("str1", "str2", "str3")}\"")
+    println("task2 = \"${task2("str1", "str2", "str3", separator = ',')}\"")
+    println("task4 = ${task4(::sleep1000ms)} ms")
+}
 
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
+/*
+## 1. Функция с обязательными и необязательными позиционными параметрами
+Напишите функцию, которая будет принимать:
 
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
+- два обязательных аргумента типа `Int`
+- неограниченное число дополнительных аргументов типа `Int`
 
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
+Функция должна возвращать сумму первого, второго и дополнительных аргументов.
+Если в функцию передано меньше двух аргументов, программа не должна собираться (ошибка компиляции).
+ */
+fun task1(arg1: Int, arg2: Int, vararg args: Int): Int {
+    var result = arg1 + arg2
+    for( i in args ){
+        result += i
     }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
-
-    val product = 2 by 2
-    println("Произведение: $product")
+    return result
 }
 
-infix fun Int.by(other: Int): Int = this * other
+/*
+## 2. Функция с необязательным параметром и позиционными параметрами
+Напишите функцию, которая будет принимать:
 
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
-}
+- неограниченное количество строк `String`
+- необязательный параметр типа `Char`
 
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
+Функция должна возвращать объединение строк.
 
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
+- по умолчанию, строки объединяется пробелом
+- если передан `Char` параметр, то объединение делается этим символом
+ */
+fun task2(vararg strings: String, separator: Char = ' '): String {
+    var result = ""
+    for( s in strings ){
+        result += s + separator
     }
-    return "${ add() } ${ what() }"
+    if(result.isNotEmpty()) {
+        result = result.substring(0, result.length - 1)
+    }
+    return result
 }
 
-fun Float.formatWithDot(): String = "%.2f".format(this)
-
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
+fun sleep1000ms() {
+    Thread.sleep(1000L)
 }
 
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
-}
+/*
+## 4. Функция, измеряющая время выполнения другой функции
 
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
+Напишите функцию, которая бы принимала другую функцию в качестве параметра.
+Ваша функция должна запустить функцию, переданную в аргументе, и вернуть время ее выполнения.
+
+Примечание: используйте что-то долгое (например, длинный цикл с печатью) в качестве тестовой функции. Иначе, вы можете
+не заметить, сколько времени прошло
+ */
+fun task4(whatToMeasure: ()->Unit ): String {
+    val startTime = System.currentTimeMillis()
+    whatToMeasure()
+    return (System.currentTimeMillis() - startTime).toString()
+}
