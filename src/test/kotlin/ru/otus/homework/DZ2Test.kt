@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class StringCombinationTest {
 
     @Test
-    fun `testStringCombinationWithDefaultSeparator`() {
+    fun testStringCombinationWithDefaultSeparator() {
         val str1 = "Привет"
         val str2 = "мир"
         val str3 = "Kotlin"
@@ -18,7 +18,7 @@ class StringCombinationTest {
     }
 
     @Test
-    fun `testStringCombinationWithCustomSeparator`() {
+    fun testStringCombinationWithCustomSeparator() {
         val str1 = "Привет"
         val str2 = "мир"
         val str3 = "Kotlin"
