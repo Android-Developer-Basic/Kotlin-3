@@ -1,14 +1,13 @@
 package ru.otus.homework
 
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-class FunctionsTest {
+class OtusLesson3KtTest {
+
     @Test
-    fun calculationTest() {
-        Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
-        )
+    fun `joinStrings concatenates strings and returns a result`() {
+        assertEquals("Dennis Nikolay Anton Otus", secondTask("Dennis", "Nikolay", "Anton", "Otus"))
     }
+
 }
