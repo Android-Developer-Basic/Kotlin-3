@@ -1,80 +1,47 @@
 package ru.otus.homework
 
-import java.time.LocalDate
+import java.util.*
+import kotlin.system.measureTimeMillis
 
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
-
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
-
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
-
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
-    }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
-
-    val product = 2 by 2
-    println("Произведение: $product")
+    println(sumTwoParameters(5, 5, 5, 5, 5, 5, 5, 5, 5))
+    println(secondTask("Dennis", "Nikolay", "Anton", "Otus"))
+    val timeToCompile = measureTimeMillis(NameArray()::measurement)
+    println("The code took to execute $timeToCompile ms")
 }
 
-infix fun Int.by(other: Int): Int = this * other
-
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
-}
-
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
-
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
-    }
-    return "${ add() } ${ what() }"
-}
-
-fun Float.formatWithDot(): String = "%.2f".format(this)
-
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
+fun sumTwoParameters(a: Int, b: Int, vararg n: Int): String {
+    val result = a + b
+    var sum = result
     n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
+    return "$result + ${n.joinToString(" + ")} = $sum"
 }
 
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
+fun secondTask(vararg a: String, c: Char = ' ') = a.joinToString("$c")
+
+class NameArray {
+    val nameList = arrayOf("", "", "")
+    fun measurement() {
+        val scanner = Scanner(System.`in`)
+
+        for (i in nameList.indices) {
+            println("Введите имя")
+            val lName = scanner.nextLine()
+            nameList[i] = lName
+            println(nameList[i])
+        }
+        println(nameList.names())
+    }
 }
 
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
+fun <T> Array<T>.names(): String {
+    return buildString {
+        for (i in this@names.indices) {
+            append(this@names[i])
+
+            if (i != this@names.size - 1) {
+                append(", ")
+            }
+        }
+    }
+}
