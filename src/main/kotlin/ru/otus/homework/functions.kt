@@ -31,7 +31,7 @@ fun main() {
     println("Произведение: $product")
 
     println("My "+ summOfNumbers(1,1))
-    println("My "+ summOfStrings('_',"sdfg","ttt", "mmm"))                                               //uhgfiuyfiuyfiufiuyfiuyfiuyfiuyf
+    println("My "+ summOfStrings("sdfg","ttt", "mmm", ch=','))                                               //uhgfiuyfiuyfiufiuyfiuyfiuyfiuyf
 
 }
 
@@ -90,9 +90,12 @@ fun summOfNumbers( ab:Int, bc: Int, vararg n: Int ):Int{
     return (ab+bc+n.sum())
 }
 
-fun summOfStrings(ch:Char=' ', vararg str: String ):String {
-    var strAll:String= str[0].toString()
-    str.forEach { strAll =strAll+ ch+it }
-
+fun summOfStrings( vararg str: String, ch:Char=' '):String {
+    var strAll:String= str[0]
+    var i=1
+    while (i<str.size){
+        strAll += ch+str[i]
+        i++
+    }
     return (strAll )
 }
