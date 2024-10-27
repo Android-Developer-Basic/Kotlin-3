@@ -1,7 +1,6 @@
 package ru.otus.homework
 
 
-import java.text.CharacterIterator
 import java.time.LocalDate
 
 fun main() {
@@ -99,3 +98,4 @@ fun summOfStrings( vararg str: String, ch:Char=' '):String {
     }
     return (strAll )
 }
+fun timeOfFunction() {}
