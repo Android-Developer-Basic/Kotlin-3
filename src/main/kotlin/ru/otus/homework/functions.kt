@@ -2,6 +2,7 @@ package ru.otus.homework
 
 
 import java.time.LocalDate
+import kotlin.system.measureTimeMillis
 
 fun main() {
     println(calculate(10, 20))
@@ -31,7 +32,7 @@ fun main() {
 
     println("My "+ summOfNumbers(1,1))
     println("My "+ summOfStrings("sdfg","ttt", "mmm", ch=','))                                               //uhgfiuyfiuyfiufiuyfiuyfiuyfiuyf
-
+    println(timeOfFunction { timeForFunction() })
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -98,4 +99,17 @@ fun summOfStrings( vararg str: String, ch:Char=' '):String {
     }
     return (strAll )
 }
-fun timeOfFunction() {}
+
+fun timeForFunction() {
+    Thread.sleep(4000)
+}
+
+fun timeOfFunction(a: () -> Unit): Long {
+    val elapsedTime = measureTimeMillis {
+        // ваш код, который нужно измерить
+        a()
+
+
+    }
+    return elapsedTime
+}
