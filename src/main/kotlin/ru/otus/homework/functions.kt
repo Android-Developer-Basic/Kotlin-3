@@ -1,5 +1,6 @@
 package ru.otus.homework
 
+
 import java.time.LocalDate
 
 fun main() {
@@ -27,6 +28,10 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    println("My "+ summOfNumbers(1,1))
+    println("My "+ summOfStrings("sdfg", "szf","zsf").format())
+
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +83,10 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+
+fun summOfNumbers( ab:Int, bc: Int, vararg n: Int ):Int{
+    return (ab+bc+n.sum())
+}
+fun summOfStrings(vararg str: String, ch:Char=' ' ):String=(ch.toString()+str)
+
