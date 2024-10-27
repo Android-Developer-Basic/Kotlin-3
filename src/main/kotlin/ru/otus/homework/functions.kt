@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 
+import java.text.CharacterIterator
 import java.time.LocalDate
 
 fun main() {
@@ -30,7 +31,7 @@ fun main() {
     println("Произведение: $product")
 
     println("My "+ summOfNumbers(1,1))
-    println("My "+ summOfStrings("sdfg", "szf","zsf").format())
+    println("My "+ summOfStrings('_',"sdfg","ttt", "mmm"))                                               //uhgfiuyfiuyfiufiuyfiuyfiuyfiuyf
 
 }
 
@@ -88,5 +89,10 @@ fun subtract(a: Int, b: Int): Int = a - b
 fun summOfNumbers( ab:Int, bc: Int, vararg n: Int ):Int{
     return (ab+bc+n.sum())
 }
-fun summOfStrings(vararg str: String, ch:Char=' ' ):String=(ch.toString()+str)
 
+fun summOfStrings(ch:Char=' ', vararg str: String ):String {
+    var strAll:String= str[0].toString()
+    str.forEach { strAll =strAll+ ch+it }
+
+    return (strAll )
+}
