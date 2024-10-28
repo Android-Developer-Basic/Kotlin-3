@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 class FunctionsTest {
@@ -8,7 +9,7 @@ class FunctionsTest {
     fun summOfStringsTest() {
         Assertions.assertEquals(
             "str1 str2 str3",
-            summOfStrings("str1", "str2", "str3", ch = ' ')
+            summOfStrings("str1", "str2", "str3")
         )
     }
 
@@ -20,5 +21,9 @@ class FunctionsTest {
         )
     }
 
-
+    @Test
+    fun timeOfFunctionTest() {
+        val actual = timeOfFunction { timeForFunction() }
+        assertTrue { actual > 4000 }
+    }
 }
