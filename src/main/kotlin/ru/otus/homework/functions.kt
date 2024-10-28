@@ -1,80 +1,41 @@
 package ru.otus.homework
 
-import java.time.LocalDate
-
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
+    val numbers = calculation(20, 10 ,7, 4)
+    println(numbers)
 
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
+    val strOne = summation("Желание", "Ржавый" ,"Семнадцать", "Рассвет")
+    val strTwo = summation("Желание", "Ржавый" ,"Семнадцать", "Рассвет", someChar = ',')
 
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
+    println (summation(strOne))
+    println (summation(strTwo))
 
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
-    }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
+    val funcTime1 = timeToDoFunction{ summation(strOne) }
+    val funcTime2 = timeToDoFunction{ summation(strTwo) }
 
-    val product = 2 by 2
-    println("Произведение: $product")
+    println("Время выполениния функции 1: $funcTime1 мс")
+    println("Время выполениния функции 2: $funcTime2 мс")
 }
 
-infix fun Int.by(other: Int): Int = this * other
-
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
+fun calculation(numberOne: Int, numberTwo: Int, vararg numbers: Int): Int {
+    var sumVararg = 0
+    for (number in numbers) sumVararg += number
+    val sumAllNumbers = numberOne + numberTwo + sumVararg
+    return sumAllNumbers
 }
 
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
+fun summation(vararg strings: String): String {
+    return strings.joinToString(" ")
 }
 
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
+fun summation(vararg strings: String, someChar: Char): String {
+    return strings.joinToString("$someChar")
 }
 
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
-    }
-    return "${ add() } ${ what() }"
+fun timeToDoFunction(block: () -> Unit): Double {
+    val startTime = System.nanoTime()
+    block()
+    val endTime = System.nanoTime()
+    val result = endTime - startTime
+    return result/1000000.0
 }
-
-fun Float.formatWithDot(): String = "%.2f".format(this)
-
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
-}
-
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
-}
-
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
