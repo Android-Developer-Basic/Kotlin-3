@@ -9,7 +9,7 @@ class FunctionsTest {
     fun summOfStringsTest() {
         Assertions.assertEquals(
             "str1 str2 str3",
-            summOfStrings("str1", "str2", "str3")
+            sumOfStrings("str1", "str2", "str3")
         )
     }
 
@@ -17,7 +17,7 @@ class FunctionsTest {
     fun summOfStringsTest2() {
         Assertions.assertEquals(
             "str1,str2,str3",
-            summOfStrings("str1", "str2", "str3", ch = ',')
+            sumOfStrings("str1", "str2", "str3", ch = ',')
         )
     }
 
