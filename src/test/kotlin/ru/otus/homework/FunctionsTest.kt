@@ -2,13 +2,16 @@ package ru.otus.homework
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import ru.otus.homework.concatenateStrings
 
 class FunctionsTest {
+
+
     @Test
-    fun calculationTest() {
+    fun concatenateStringsTest(){
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            "str1 str2 str3",
+            concatenateStrings("str1", "str2", "str3")
         )
     }
 }
