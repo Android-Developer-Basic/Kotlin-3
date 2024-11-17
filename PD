@@ -1,0 +1,30 @@
+package com.example.homework_kotlin_3
+
+import kotlin.system.measureTimeMillis
+
+fun main() {
+    println(funcManyParams(10,20, 54, 56 ))
+    println(joinStrings("zb1", "zb2", sep = '!' ))
+    println(testStringJoin())
+    println(measureTime { Thread.sleep(100); println("ololo") });
+}
+
+fun funcManyParams(n1: Int, n2: Int, vararg params: Int): Int{
+    return n1 + n2 + params.sum()
+}
+
+fun joinStrings(vararg strings: String, sep: Char = ' ') : String {
+    return strings.joinToString(separator = sep.toString());
+}
+
+private fun testStringJoin() : Boolean {
+    if (joinStrings("str1","str2","str3") == "str1 str2 str3") return true;
+    if (joinStrings("str1","str2","str3", sep = ',') == "str1,str2,str3") return true;
+    return false;
+}
+
+fun measureTime(func: () -> Unit) : Long {
+    return measureTimeMillis {
+        func()
+    }
+}
