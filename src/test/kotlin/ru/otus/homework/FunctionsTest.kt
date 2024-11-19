@@ -4,11 +4,21 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 class FunctionsTest {
+// 3. Тестовая функция для пункта №2
+
     @Test
-    fun calculationTest() {
+    fun concatenationTest1() {
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            "str1 str2 str3",
+            concantination("str1", "str2", "str3")
+        )
+    }
+
+    @Test
+    fun concatenationTest2() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            concantination("str1", "str2", "str3", divider = ',')
         )
     }
 }

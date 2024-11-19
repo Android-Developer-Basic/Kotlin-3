@@ -1,80 +1,43 @@
 package ru.otus.homework
 
-import java.time.LocalDate
+import java.time.LocalDateTime
 
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
-
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
-
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
-
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
+    sumOfElement(1, 2, 3, 4, 5)
+    concantination("sdsd", "dd", "s", divider = '1')
+    operationTimer {
+        val list = (1..10000).toList()
+        list.forEach { it * 2 }
     }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
-
-    val product = 2 by 2
-    println("Произведение: $product")
 }
 
-infix fun Int.by(other: Int): Int = this * other
-
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
+// 1. Функция с обязательными и необязательными позиционными параметрами
+fun sumOfElement(firstElement: Int, secondElement: Int, vararg otherElements: Int): Int {
+    var sum = firstElement + secondElement
+    otherElements.forEach { sum += it }
+    println(sum)
+    return sum
 }
 
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
-
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
+// 2. Функция с необязательным параметром и позиционными параметрами
+fun concantination(vararg strings: String, divider: Char = ' '): String {
+    var concantinatedStr = ""
+    strings.forEach {
+        concantinatedStr += it;
+        if (it != strings.last()) concantinatedStr += divider
     }
-    return "${ add() } ${ what() }"
+    println(concantinatedStr)
+    return concantinatedStr
 }
 
-fun Float.formatWithDot(): String = "%.2f".format(this)
+// 4. Функция, измеряющая время выполнения другой функции
+fun operationTimer(func: () -> Unit): Int {
+    val startTime = LocalDateTime.now()
+    func
+    val finishTime = LocalDateTime.now()
+    val operationTime = (finishTime.nano - startTime.nano) / 1000
+    println("operation duration is $operationTime microseconds")
+    return operationTime
 
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
 }
 
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
-}
-
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
