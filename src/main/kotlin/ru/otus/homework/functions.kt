@@ -1,6 +1,8 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Duration
 
 fun main() {
     println(calculate(10, 20))
@@ -10,6 +12,9 @@ fun main() {
     println(calculate(3, 2, ::add))
     println(calculate(3, 2, ::subtract))
     println(calculate(3, 2) { n1, n2 -> n1 * n2 })
+    println(sumOfMultiple(1,1))
+    println(secondTask("Hello", "I'm", "Daria"))
+    println(executionTime(::longFunction))
 
     sign(
         lastName = "Иванов",
@@ -78,3 +83,24 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun sumOfMultiple (a: Int, b: Int, vararg c: Int): Int {
+    var s1 = a + b
+    c.forEach { s1 += it }
+    return s1
+}
+
+fun secondTask(vararg a : String, separator: Char = ' ') : String {
+    return a.joinToString(separator.toString())
+}
+fun longFunction() {
+    for (i in 1 .. 1000) {
+        println(i)
+        }
+}
+
+fun executionTime(x: () -> Unit): Duration {
+    val a = LocalDateTime.now()
+    x()
+    return Duration.between(a, LocalDateTime.now())
+}
