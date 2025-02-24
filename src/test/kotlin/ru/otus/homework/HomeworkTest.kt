@@ -2,7 +2,6 @@ package ru.otus.homework
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import kotlin.math.log
 import kotlin.math.sin
 
 class HomeworkTest {

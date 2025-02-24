@@ -28,7 +28,7 @@ fun add(arg1: Int, arg2: Int, vararg args: Int): Int {
 //- по умолчанию, строки объединяется пробелом
 //- если передан `Char` параметр, то объединение делается этим символом
 fun concatenateString(vararg strings: String, separator: Char = ' '): String {
-    var result: String = ""
+    var result = ""
 
     for (i in 0 until strings.size) {
         result += strings[i] + if (i != strings.size - 1) separator else ""
@@ -62,7 +62,9 @@ fun sleep(timeInSeconds: Int = 0) {
 }
 
 fun longLoop(iterations: Long = 0) {
+    var j: Long = 0
     for (i in 0 .. iterations) {
-        /* no-op */
+        j += i
     }
+    println(j)
 }
