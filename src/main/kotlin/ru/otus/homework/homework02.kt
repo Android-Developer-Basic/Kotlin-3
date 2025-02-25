@@ -5,7 +5,7 @@ import kotlin.random.Random
 
 fun main() {
     println("Task 1")
-    val dummy = haveSomeFun(0, 1, 2, 3, 4, 5)
+    /*val dummy = */haveSomeFun(0, 1, 2, 3, 4, 5)
     haveSomeFun(5, 7)
 
     println("Task 2")
