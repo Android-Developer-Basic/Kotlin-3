@@ -7,12 +7,14 @@ fun main() {
     println("Task 1")
     /*val dummy = */haveSomeFun(0, 1, 2, 3, 4, 5)
     haveSomeFun(5, 7)
+    haveSomeFun(12)
+    haveSomeFun()
 
     println("Task 2")
-    haveSomeFun("Have", "Some", "Fun")
-    haveSomeFun("Have", "Some", "Fun", "Again", c = '.')
-    haveSomeFun("", c = '?')
-    haveSomeFun()
+    haveSomeFun2("Have", "Some", "Fun")
+    haveSomeFun2("Have", "Some", "Fun", "Again", c = '.')
+    haveSomeFun2("", c = '?')
+    haveSomeFun2()
 
     println("Task 4")
     funMeter(::timeConsumingFun)
@@ -38,7 +40,7 @@ fun haveSomeFun(n1: Int, n2: Int, vararg n: Int) : Int {
 }
 
 /* 2. Функция с необязательным параметром и позиционными параметрами*/
-fun haveSomeFun(vararg s: String, c: Char = ' ') : String {
+fun haveSomeFun2(vararg s: String, c: Char = ' ') : String {
     var res = ""
     s.forEach {
         res += (if (res.isEmpty()) "" else c.toString()) + it

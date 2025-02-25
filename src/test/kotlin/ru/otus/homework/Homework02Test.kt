@@ -8,7 +8,7 @@ class Homework02Test {
     fun `haveSomeFun Testcase 1`() {
         Assertions.assertEquals(
             "str1 str2 str3",
-            haveSomeFun("str1", "str2", "str3")
+            haveSomeFun2("str1", "str2", "str3")
         )
     }
 
@@ -16,7 +16,7 @@ class Homework02Test {
     fun `haveSomeFun Testcase 2`() {
         Assertions.assertEquals(
             "str1,str2,str3",
-            haveSomeFun("str1", "str2", "str3", c = ',')
+            haveSomeFun2("str1", "str2", "str3", c = ',')
         )
     }
 }
