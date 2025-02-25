@@ -39,7 +39,7 @@ fun haveSomeFun(n1: Int, n2: Int, vararg n: Int) : Int {
 
 /* 2. Функция с необязательным параметром и позиционными параметрами*/
 fun haveSomeFun(vararg s: String, c: Char = ' ') : String {
-    var res: String  = ""
+    var res = ""
     s.forEach {
         res += (if (res.isEmpty()) "" else c.toString()) + it
     }
