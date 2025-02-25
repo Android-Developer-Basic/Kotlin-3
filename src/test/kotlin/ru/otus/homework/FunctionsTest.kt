@@ -5,10 +5,17 @@ import org.junit.jupiter.api.Test
 
 class FunctionsTest {
     @Test
-    fun calculationTest() {
+    fun concatenationTest1() {
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            "str1 str2 str3",
+            myConcatenate("str1", "str2", "str3")
+        )
+    }
+    @Test
+    fun concatenationTest2() {
+        Assertions.assertEquals(
+            "str1,str2,str3",
+            myConcatenate("str1", "str2", "str3", delimiter = ',')
         )
     }
 }
