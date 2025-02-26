@@ -61,8 +61,7 @@ fun funMeter(f: ()->Unit) {
 }
 
 fun timeConsumingFun() {
-    val to = System.currentTimeMillis() + Random.nextInt(1000, 5000)
-    while (System.currentTimeMillis() < to) { Thread.sleep(100) }
+    Thread.sleep(Random.nextInt(1000, 5000).toLong())
 }
 
 
