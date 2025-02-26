@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import java.util.*
 import kotlin.time.measureTime
 
 fun main() {
@@ -28,6 +29,9 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+
+    println("fun1 выполнялась " + funMeasuringTime(::fun1).toString() + " миллисекунд")
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -97,4 +101,10 @@ fun fun2(vararg strings: String, symbol: Char = ' '): String{
         }
     }
     return result
+}
+fun funMeasuringTime(f: (Int, Int, IntArray) -> Int): Long{
+    val startTime = System.currentTimeMillis()
+    f(13, 162, IntArray(99_999_999) {999_999})
+    val finishTime = System.currentTimeMillis()
+    return finishTime - startTime
 }
