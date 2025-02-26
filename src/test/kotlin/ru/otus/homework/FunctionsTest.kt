@@ -5,10 +5,11 @@ import org.junit.jupiter.api.Test
 
 class FunctionsTest {
     @Test
-    fun calculationTest() {
+    fun funWithUnlimitedParametersTest() {
         Assertions.assertEquals(
-            "1 + 2 = 3 Огурцов",
-            calculate(1, 2)
+            6,
+            funWithUnlimitedParameters(1, 2, 3)
         )
     }
+
 }
