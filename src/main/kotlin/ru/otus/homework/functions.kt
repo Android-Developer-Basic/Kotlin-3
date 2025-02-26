@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import kotlin.time.measureTime
 
 fun main() {
     println(calculate(10, 20))
@@ -78,3 +79,22 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun fun1(number1: Int, number2: Int, vararg numbers: Int): Int{
+    var sum = number1 + number2
+    for(number in numbers){
+        sum += number
+    }
+    return sum
+}
+fun fun2(vararg strings: String, symbol: Char = ' '): String{
+    var result = ""
+    for(string in strings){
+        if(string == strings.last()){
+            result += string
+        } else {
+            result += string + symbol
+        }
+    }
+    return result
+}
