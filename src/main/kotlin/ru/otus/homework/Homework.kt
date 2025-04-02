@@ -1,9 +1,9 @@
 package ru.otus.homework
 
 fun main() {
-    println("Time: " + checkTimeToProceed { tooLongFunction(5) } + " ms")
-    println("Time: " + checkTimeToProceed { notSoLongFunction(5) } + " ms")
-    println("Time: " + checkTimeToProceed { fastFunction(5) } + " ms")
+    println("Time: " + checkTimeToProceed { longFunction(5) } + " ms")
+    println("Time: " + checkTimeToProceed { longFunction(5, 10) } + " ms")
+    println("Time: " + checkTimeToProceed { longFunction(5, 1) } + " ms")
 }
 
 fun sumTwoOrMoreArgs(first:Int, second:Int, vararg param: Int): Int {
@@ -21,23 +21,9 @@ fun checkTimeToProceed(f:() -> Unit): Long {
 }
 
 
-fun tooLongFunction(n:Int) {
-    for (i in 0..n) {
-        Thread.sleep(100)
-        println("Now is $i step.")
-    }
-}
-
-fun notSoLongFunction(n:Int){
-    for (i in 0..n) {
-        Thread.sleep(10)
-        println("Now is $i step.")
-    }
-}
-
-fun fastFunction(n:Int) {
-    for (i in 0..n) {
-        Thread.sleep(1)
+fun longFunction(steps:Int, delay:Long = 100) {
+    for (i in 0..steps) {
+        Thread.sleep(delay)
         println("Now is $i step.")
     }
 }
