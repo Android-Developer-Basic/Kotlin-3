@@ -1,6 +1,7 @@
 package ru.otus.homework
 
 import java.time.LocalDate
+import kotlin.random.Random
 
 fun main() {
     println(calculate(10, 20))
@@ -27,6 +28,13 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    println("Время выполнения функции sumOfValues = ${funExecTime {
+        sumOfValues(1, 2, 3, 4, 5)
+    }} ms")
+    println("Время выполнения вынкции concatWithSep = ${funExecTime {
+        concatWithSep("str1", "str2", "str3", c = ',')
+    }} ms")
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +86,23 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+// Домашка тут
+
+// ## 1. Функция с обязательными и необязательными позиционными параметрами
+// Используем "Элвис" оператор
+fun sumOfValues(n1: Int? = null, n2: Int? = null, vararg n: Int) =
+    (n1 ?: throw IllegalArgumentException()) +
+            (n2 ?: throw IllegalArgumentException()) +
+            n.sum()
+
+// ## 2. Функция с необязательным параметром и позиционными параметрами
+fun concatWithSep(vararg s: String, c: Char = ' ') = s.joinToString("$c")
+
+// ## 4. Функция, измеряющая время выполнения другой функции
+fun funExecTime(f: () -> Unit): Long {
+    val start = System.currentTimeMillis()
+    f()
+    Thread.sleep(Random.nextLong(200, 1000))  // имитация долгой операции
+    return System.currentTimeMillis() - start
+}
