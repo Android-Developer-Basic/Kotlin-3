@@ -2,8 +2,6 @@ package ru.otus.homework
 
 import java.lang.System.*
 import java.time.LocalDate
-import kotlin.time.Duration
-import kotlin.time.toDuration
 
 fun main() {
     println(calculate(10, 20))
