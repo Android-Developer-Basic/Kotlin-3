@@ -11,4 +11,13 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+
+    @Test
+    fun dspSeparatedStringsTest() {
+
+        val result_1 = "One Two Three"
+        val result_2 = "One,Two,Three"
+        Assertions.assertEquals( result_1, dspSeparatedStrings("One","Two","Three") )
+        Assertions.assertEquals( result_2, dspSeparatedStrings("One","Two","Three",separ=',') )
+    }
 }

@@ -1,6 +1,8 @@
 package ru.otus.homework
 
+import java.lang.Thread.sleep
 import java.time.LocalDate
+import kotlin.system.measureTimeMillis
 
 fun main() {
     println(calculate(10, 20))
@@ -78,3 +80,31 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun calcAllFuncArg( firstArg:Int, secArg:Int, vararg addendum :Int ):Int{
+
+    var result = firstArg + secArg
+    for( n in addendum ) result+=n
+    return result
+}
+
+fun dspSeparatedStrings( vararg texts:String, separ:Char = ' '):String {
+
+    var result:String = ""
+    for( text in texts ){
+        result += "$text$separ"
+    }
+    return  result.dropLast(1)
+}
+
+fun waitFunc( ) {
+    sleep( 3000)
+}
+
+fun meterExecFuncTime(  waitfunc:()->Unit):Long {
+
+    val execTime = measureTimeMillis {
+        waitfunc( )
+    }
+    return execTime
+}
