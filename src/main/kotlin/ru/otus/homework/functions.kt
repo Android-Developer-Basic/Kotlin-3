@@ -1,6 +1,9 @@
 package ru.otus.homework
 
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import java.time.LocalDate
+import kotlin.system.measureTimeMillis
 
 fun main() {
     println(calculate(10, 20))
@@ -45,7 +48,7 @@ internal fun LocalDate.russian(): String {
 
 fun what(): String = "Огурцов"
 
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
+fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${n1 + n2} ${what()}"
 
 fun calculate(n1: Int, n2: Float): String {
     fun add(): String {
@@ -60,7 +63,7 @@ fun calculate(n1: Int, n2: Float): String {
 
         return "$n1 + $n2 = $s"
     }
-    return "${ add() } ${ what() }"
+    return "${add()} ${what()}"
 }
 
 fun Float.formatWithDot(): String = "%.2f".format(this)
@@ -78,3 +81,22 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun sumOfInt(a: Int, b: Int, vararg c: Int): Int = a + b + c.sumOf { it }
+
+fun stringCombine(vararg s: String, delimiter: Char = ' '): String {
+    var result: String = ""
+    val i = s.iterator()
+    while (i.hasNext()) {
+        result = result + i.next() + (delimiter.takeIf { i.hasNext() } ?: "")
+    }
+    return result
+}
+
+fun longFunc(delay: Long = 100) {
+    runBlocking {
+        delay(delay)
+    }
+}
+
+fun getExecutionTimeMillis(block: () -> Any): Long = measureTimeMillis { block() }
