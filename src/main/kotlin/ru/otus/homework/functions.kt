@@ -1,6 +1,9 @@
 package ru.otus.homework
 
+import java.lang.System.*
 import java.time.LocalDate
+import kotlin.time.Duration
+import kotlin.time.toDuration
 
 fun main() {
     println(calculate(10, 20))
@@ -27,6 +30,12 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    val sum = variableAdd(1, 2, 3, 4)
+    println("1 + 2 + 3 + 4 = $sum")
+
+    val ms = measure(::longLoop)
+    println("longLoop takes $ms milliseconds")
 }
 
 infix fun Int.by(other: Int): Int = this * other
@@ -78,3 +87,41 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun variableAdd(a: Int, b: Int, vararg values: Int): Int {
+    var result = a + b
+
+    for(i in values) {
+        result += i
+    }
+
+    return result
+}
+
+fun sumStrings(vararg strings: String, separator: Char = ' '): String {
+    var result: String = ""
+
+    for(i in strings) {
+        if(result.isEmpty())
+            result += i
+        else
+            result += ("$separator" + i)
+    }
+
+    return result
+}
+
+fun longLoop() {
+    for(i in 1..100) {
+        println("i = $i")
+        Thread.sleep(10)
+    }
+}
+
+fun measure( oper: () -> Unit ): Long {
+    val start = currentTimeMillis()
+
+    oper()
+
+    return (currentTimeMillis() - start)
+}
