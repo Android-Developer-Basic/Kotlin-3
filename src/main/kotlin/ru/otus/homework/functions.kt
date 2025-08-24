@@ -27,6 +27,18 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    //Homework---
+    val f1result = function1(2, 3, 5, 2)
+    println(f1result)
+
+    val f2result = function2("Hello", "World", "Nice", "Day", char1 = '/')
+    println(f2result)
+
+    val list = arrayListOf<String>("Hello", "Good Morning", "Good Evening", "Good Day", "Good Night", "How are you?")
+    val f3result = function3('e', list, ::function4)
+    println(f3result)
+
 }
 
 infix fun Int.by(other: Int): Int = this * other
