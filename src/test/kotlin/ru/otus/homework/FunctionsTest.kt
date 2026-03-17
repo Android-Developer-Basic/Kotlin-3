@@ -11,4 +11,8 @@ class FunctionsTest {
             calculate(1, 2)
         )
     }
+    @Test
+    fun foo() {
+        Assertions.assertEquals(1, 1)
+    }
 }
