@@ -3,6 +3,32 @@ package ru.otus.homework
 import java.time.LocalDate
 
 fun main() {
+    val hmFun = HomeworkFunctions()
+
+    println("1. Функция сумма параметров")
+    val firstValue = 1
+    val secondValue = 2
+    val numbers = intArrayOf(3, 4, 5)
+    val result1 = hmFun.sum(firstValue, secondValue,*numbers)
+    println("Input: first = $firstValue, second = $secondValue, others = ${numbers.joinToString()}")
+    println("Output: $result1")
+    println()
+
+    println("2. Функция с необязательным параметром")
+    val customStrings = arrayOf("hello", "my", "dear", "teacher")
+    val customSeparator = '-'
+    val result2 = hmFun.joinStrings(*customStrings, separator = customSeparator)
+    println("Input: strings = ${customStrings.joinToString()}, separator = '$customSeparator'")
+    println("Output: $result2")
+    println()
+
+    println("4. Функция, измеряющая время")
+    val executionTime = hmFun.measureExecutionTime {
+        hmFun.longTask()
+    }
+
+    println("Время выполнения: $executionTime мс")
+
     println(calculate(10, 20))
     println(calculate(10, 20.5F))
     println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
