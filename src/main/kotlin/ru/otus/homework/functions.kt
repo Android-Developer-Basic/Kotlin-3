@@ -1,80 +1,48 @@
 package ru.otus.homework
 
-import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.Duration
 
 fun main() {
-    println(calculate(10, 20))
-    println(calculate(10, 20.5F))
-    println(calculate(30.1F, 40.2F, 50.3F, 60.4F))
 
-    println(calculate(3, 2, ::add))
-    println(calculate(3, 2, ::subtract))
-    println(calculate(3, 2) { n1, n2 -> n1 * n2 })
+}
 
-    sign(
-        lastName = "Иванов",
-        firstName = "Вася"
-    )
+fun sum(n1: Int, n2: Int, vararg params: Int): Int{
+    return n1 + n2 + params.sum()
+}
 
-    translate(calculate(1.1F, 2.2F, 3.3F)) {
-        "In english: ${it.replace("+", "plus").replace("=", "equals")}"
+fun joinStrings(vararg strings: String, separator: Char = ' '): String{
+    return strings.joinToString(separator = separator.toString())
+}
+
+fun testJoinString(): Boolean{
+    var actual = joinStrings("str1", "str2", "str3")
+    var expected = "str1 str2 str3"
+
+    if(actual != expected){
+        return false
     }
-    println(
-        calculate(1.1F, 2.2F, 3.3F) {
-            "%.4f (с точностью до четырех знаков)".format(this)
-        }
-    )
 
-    val product = 2 by 2
-    println("Произведение: $product")
-}
+    actual = joinStrings("str1", "str2", "str3", separator = ',')
+    expected = "str1,str2,str3"
 
-infix fun Int.by(other: Int): Int = this * other
-
-fun translate(what: String, translator: (String) -> String) {
-    println(translator(what))
-}
-
-fun sign(firstName: String, lastName: String, date: LocalDate = LocalDate.now()) {
-    println("Работу выполнил: $firstName $lastName, ${date.russian()}")
-}
-
-internal fun LocalDate.russian(): String {
-    return "${this.dayOfMonth}.${monthValue}.${year}"
-}
-
-fun what(): String = "Огурцов"
-
-fun calculate(n1: Int, n2: Int): String = "$n1 + $n2 = ${ n1 + n2 } ${ what() }"
-
-fun calculate(n1: Int, n2: Float): String {
-    fun add(): String {
-        val s: Float
-
-        while (true) {
-            // Пример блока. Вычисляем, и сразу выходим
-            val s1 = n1 + n2
-            s = s1
-            break
-        }
-
-        return "$n1 + $n2 = $s"
+    if(actual != expected){
+        return false
     }
-    return "${ add() } ${ what() }"
+
+    return true
 }
 
-fun Float.formatWithDot(): String = "%.2f".format(this)
+fun executionTime(op: ()->Unit): Long{
+    val start = LocalDateTime.now()
+    op()
+    val end = LocalDateTime.now()
 
-fun calculate(vararg n: Float, format: Float.() -> String = Float::formatWithDot): String {
-    var sum = 0F
-    n.forEach { sum += it }
-    return "${n.joinToString(" + ")} = ${sum.format()}"
+    return Duration.between(start, end).toMillis()
 }
 
-fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
-    val result = op(n1, n2)
-    return "Результат операции $n1 и $n2 равен: $result"
+fun longTimeDuration() {
+    for(i in 0..100000){
+        println(i)
+    }
 }
-
-fun add(a: Int, b: Int): Int = a + b
-fun subtract(a: Int, b: Int): Int = a - b
