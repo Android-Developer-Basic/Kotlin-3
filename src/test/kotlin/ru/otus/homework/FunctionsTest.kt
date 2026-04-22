@@ -1,6 +1,5 @@
 package ru.otus.homework
 
-import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -43,7 +42,7 @@ class JoinToStringTest{
 
     @Test
     fun `call testJoinString function`(){
-        val actual = testJoinString();
+        val actual = testJoinString()
         val expected = true
 
         assertEquals(actual, expected)

@@ -30,7 +30,7 @@ fun testJoinString(): Boolean{
         return false
     }
 
-    return true;
+    return true
 }
 
 fun executionTime(op: ()->Unit): Long{
@@ -41,7 +41,7 @@ fun executionTime(op: ()->Unit): Long{
     return Duration.between(start, end).toMillis()
 }
 
-fun longTimeDuration(): Unit{
+fun longTimeDuration() {
     for(i in 0..100000){
         println(i)
     }
