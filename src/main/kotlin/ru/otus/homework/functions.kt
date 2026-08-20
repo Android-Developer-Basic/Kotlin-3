@@ -27,6 +27,14 @@ fun main() {
 
     val product = 2 by 2
     println("Произведение: $product")
+
+    val x = foundMinBetweenValues2to5(5, 3, -19)
+    println("MIN of Int is $x")
+
+    val y = foundMinBetweenValues2to5(5.0f, 3.0f, -19.0f, 150f)
+    println("MIN of Float is $y")
+
+    measureSorting()
 }
 
 infix fun Int.by(other: Int): Int = this * other
