@@ -78,3 +78,14 @@ fun calculate(n1: Int, n2: Int, op: (Int, Int) -> Int): String {
 
 fun add(a: Int, b: Int): Int = a + b
 fun subtract(a: Int, b: Int): Int = a - b
+
+fun sum(first: Int, second: Int, vararg other: Int): Int = first + second + other.sum()
+
+fun joinStrings(vararg strings: String, separator: Char = ' '): String =
+    strings.joinToString(separator.toString())
+
+fun measureExecutionTimeNanos(block: () -> Unit): Long {
+    val startedAt = System.nanoTime()
+    block()
+    return System.nanoTime() - startedAt
+}
